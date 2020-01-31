@@ -955,104 +955,7 @@ class ComponentManager {
   }
 }
 
-var name = "ecsy";
-var version = "0.1.4";
-var description = "Entity Component System in JS";
-var main = "build/ecsy.js";
-var module = "build/ecsy.module.js";
-var types = "src/index.d.ts";
-var scripts = {
-	build: "rollup -c && npm run docs",
-	docs: "rm docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme docs/theme --hideSources --hideBreadcrumbs --out docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch docs/api/_sidebar.md",
-	"dev:docs": "nodemon -e ts -x 'npm run docs' -w src",
-	dev: "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:docs' 'npm run dev:server'",
-	"dev:server": "http-server -c-1 -p 8080 --cors",
-	lint: "eslint src test examples",
-	start: "npm run dev",
-	test: "ava",
-	travis: "npm run lint && npm run test && npm run build",
-	"watch:test": "ava --watch"
-};
-var repository = {
-	type: "git",
-	url: "git+https://github.com/fernandojsg/ecsy.git"
-};
-var keywords = [
-	"ecs",
-	"entity component system"
-];
-var author = "Fernando Serrano <fernandojsg@gmail.com> (http://fernandojsg.com)";
-var license = "MIT";
-var bugs = {
-	url: "https://github.com/fernandojsg/ecsy/issues"
-};
-var ava = {
-	files: [
-		"test/**/*.test.js"
-	],
-	sources: [
-		"src/**/*.js"
-	],
-	require: [
-		"babel-register",
-		"esm"
-	]
-};
-var jspm = {
-	files: [
-		"package.json",
-		"LICENSE",
-		"README.md",
-		"build/ecsy.js",
-		"build/ecsy.min.js",
-		"build/ecsy.module.js"
-	],
-	directories: {
-	}
-};
-var homepage = "https://github.com/fernandojsg/ecsy#readme";
-var devDependencies = {
-	ava: "^1.4.1",
-	"babel-cli": "^6.26.0",
-	"babel-core": "^6.26.3",
-	"babel-eslint": "^10.0.3",
-	"babel-loader": "^8.0.6",
-	concurrently: "^4.1.2",
-	"docsify-cli": "^4.4.0",
-	eslint: "^5.16.0",
-	"eslint-config-prettier": "^4.3.0",
-	"eslint-plugin-prettier": "^3.1.1",
-	"http-server": "^0.11.1",
-	nodemon: "^1.19.4",
-	prettier: "^1.19.1",
-	rollup: "^1.27.8",
-	"rollup-plugin-json": "^4.0.0",
-	"rollup-plugin-terser": "^5.1.2",
-	typedoc: "^0.15.3",
-	"typedoc-plugin-markdown": "^2.2.11",
-	typescript: "^3.7.2"
-};
-var pjson = {
-	name: name,
-	version: version,
-	description: description,
-	main: main,
-	"jsnext:main": "build/ecsy.module.js",
-	module: module,
-	types: types,
-	scripts: scripts,
-	repository: repository,
-	keywords: keywords,
-	author: author,
-	license: license,
-	bugs: bugs,
-	ava: ava,
-	jspm: jspm,
-	homepage: homepage,
-	devDependencies: devDependencies
-};
-
-const Version = pjson.version;
+const Version = "development";
 
 class World {
   constructor() {
@@ -1063,13 +966,6 @@ class World {
     this.enabled = true;
 
     this.eventQueues = {};
-
-    if (typeof CustomEvent !== "undefined") {
-      var event = new CustomEvent("ecsy-world-created", {
-        detail: { world: this, version: Version }
-      });
-      window.dispatchEvent(event);
-    }
   }
 
   registerComponent(Component) {
