@@ -3,6 +3,7 @@
   "version": "0.1.4",
   "description": "Entity Component System in JS",
   "main": "build/ecsy.js",
+  "type": "module",
   "jsnext:main": "build/ecsy.module.js",
   "module": "build/ecsy.module.js",
   "types": "src/index.d.ts",

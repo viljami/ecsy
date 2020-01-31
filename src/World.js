@@ -12,13 +12,6 @@ export class World {
     this.enabled = true;
 
     this.eventQueues = {};
-
-    if (typeof CustomEvent !== "undefined") {
-      var event = new CustomEvent("ecsy-world-created", {
-        detail: { world: this, version: Version }
-      });
-      window.dispatchEvent(event);
-    }
   }
 
   registerComponent(Component) {

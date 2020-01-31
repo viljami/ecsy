@@ -1,2 +1,1 @@
-import pjson from "../package.json";
-export const Version = pjson.version;
+export const Version = "development";
